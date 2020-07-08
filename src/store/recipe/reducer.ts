@@ -6,7 +6,8 @@ import { IRecipe } from '../../components/recipe/types';
 type RecipesState = null | IRecipe[];
 type RecipesAction =
   | { type: RecipeTypes.CREATE_RECIPE_SUCCESS; payload: IRecipe }
-  | { type: RecipeTypes.GET_ALL_RECIPES_SUCCESS; payload: IRecipe[] };
+  | { type: RecipeTypes.GET_ALL_RECIPES_SUCCESS; payload: IRecipe[] }
+  | { type: RecipeTypes.GET_RECIPE_SUCCESS; payload: IRecipe};
 
 export const recipeReducer = combineReducers({
   isLoading: createReducer(true)
@@ -14,6 +15,7 @@ export const recipeReducer = combineReducers({
       [
         recipeActions.getAllRecipesAsync.request,
         recipeActions.createRecipeAsync.request,
+        recipeActions.getRecipeAsync.request,
       ],
       () => true,
     )
@@ -23,6 +25,8 @@ export const recipeReducer = combineReducers({
         recipeActions.getAllRecipesAsync.failure,
         recipeActions.createRecipeAsync.success,
         recipeActions.createRecipeAsync.failure,
+        recipeActions.getRecipeAsync.success,
+        recipeActions.getRecipeAsync.failure,
       ],
       () => false,
     ),
@@ -32,7 +36,7 @@ export const recipeReducer = combineReducers({
       (_, action) => action.payload,
     )
     .handleAction(
-      [recipeActions.createRecipeAsync.success],
+      [recipeActions.createRecipeAsync.success, recipeActions.getRecipeAsync.success],
       (store, action) => {
         if (store) {
           return store.concat(action.payload);

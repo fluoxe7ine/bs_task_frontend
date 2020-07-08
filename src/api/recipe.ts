@@ -24,7 +24,12 @@ export const postRecipe = async ({ cover, title, description }: IRecipeFormData)
 
   const data = await response.json();
 
-  console.log({ data });
-
   return data;
+};
+
+export const getRecipe = async (id: string) => {
+  const response = await fetch(`${ENDPOINTS.getRecipe}/${id}`);
+  const recipe = await response.json();
+
+  return recipe;
 };

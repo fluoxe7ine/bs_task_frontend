@@ -1,10 +1,14 @@
 import React, { useEffect } from 'react';
+import './styles.scss';
 import { RecipeCard } from 'components/recipe';
 import { useDispatch, useSelector } from 'react-redux';
 import { recipeActions } from 'store/recipe/actions';
 import { IStore } from 'store';
-import { Loader } from 'components/ui/Loader';
-import { IRecipe, IRecipeCard, IRecipeVersion } from '../types';
+import { useCached } from 'utils/hooks';
+import { Link, generatePath } from 'react-router-dom';
+import { book } from 'routes';
+import { IRecipe, IRecipeCard } from '../types';
+import { Loader } from '../../ui/Loader';
 
 export const RecipeCards: React.FC = () => {
   const dispatch = useDispatch();
@@ -16,25 +20,23 @@ export const RecipeCards: React.FC = () => {
   );
 
   useEffect(() => {
-    if (!recipes) {
-      dispatch(recipeActions.getAllRecipesAsync.request());
-    }
-  }, [dispatch, recipes]);
+    dispatch(recipeActions.getAllRecipesAsync.request());
+  }, [dispatch]);
 
-  if (isLoading) {
+  const cachedRecipes = useCached(recipes);
+
+  if (isLoading && !cachedRecipes) {
     return <Loader />;
   }
 
-  if (!recipes.length && !isLoading) {
+  if (!cachedRecipes?.length && !isLoading) {
     return <span>Sorry, there are no recipes yet</span>;
   }
 
   return (
     <>
-      {recipes.map(({ _id: id, versions }) => {
-        const [
-          latestVersion,
-        ] = versions.sort((v1: IRecipeVersion, v2: IRecipeVersion) => (new Date(v1.date) < new Date(v2.date) ? 1 : 0));
+      {cachedRecipes.map(({ _id: id, versions }) => {
+        const latestVersion = versions[versions.length - 1];
 
         return {
           id,
@@ -43,18 +45,17 @@ export const RecipeCards: React.FC = () => {
       })
         .reverse()
         .map((recipe: IRecipeCard) => (
-          <RecipeCard
-            key={recipe.id}
-            id={recipe.id}
-            date={recipe.date}
-            description={recipe.description}
-            title={recipe.title}
-            cover={recipe.cover}
-          />
+          <Link className="card" to={generatePath(book.recipePage, { id: recipe.id })}>
+            <RecipeCard
+              key={recipe.id}
+              id={recipe.id}
+              date={recipe.date}
+              description={recipe.description}
+              title={recipe.title}
+              cover={recipe.cover}
+            />
+          </Link>
         ))}
     </>
   );
 };
-
-// return (
-// );

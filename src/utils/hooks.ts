@@ -24,3 +24,15 @@ export const useResolution = () => {
 
   return resolution;
 };
+
+export function useCached<T>(value: T) {
+  const [cached, setCached] = useState<T>(value);
+
+  useEffect(() => {
+    if (value) {
+      setCached(value);
+    }
+  }, [value]);
+
+  return cached;
+}

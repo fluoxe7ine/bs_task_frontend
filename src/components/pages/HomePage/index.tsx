@@ -1,14 +1,15 @@
 import React from 'react';
-import { useHistory } from 'react-router-dom';
+import { push } from 'connected-react-router';
+import { useDispatch } from 'react-redux';
 import { WideButton } from '../../ui/WideButton';
 import { RecipeCards } from '../../recipe/RecipeCards';
 import { book } from '../../../routes';
 
 export const HomePage = () => {
-  const history = useHistory();
+  const dispatch = useDispatch();
 
   const addNewRecipeHandler = () => {
-    history.push(book.createRecipePage);
+    dispatch(push(book.createRecipePage));
   };
 
   return (
