@@ -1,0 +1,21 @@
+.button {
+  height: 50px;
+  border-radius: 5px;
+  display: flex;
+  width: 100%;
+  outline: none;
+  border: 0;
+  cursor: pointer;
+  justify-content: center;
+  align-items: center;
+  opacity: 0.8;
+  transition: 0.3s opacity;
+  font-size: 1em;
+  font-family: 'Roboto Bold', sans-serif;
+  margin: 20px 0;
+  box-shadow: 0 3px 15px rgba(0,0,0,0.2);
+
+  &:hover {
+    opacity: 1;
+  }
+}

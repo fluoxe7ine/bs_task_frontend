@@ -7,13 +7,14 @@
   transition: .5s box-shadow;
   position: relative;
 
+  &:not(:last-of-type) {
+    margin-bottom: 20px;
+  }
+
+
   @media (max-width: 800px) {
     flex-direction: column;
     height: auto;
-  }
-
-  &:not(:last-of-type) {
-    margin-bottom: 20px;
   }
 
   &:hover {

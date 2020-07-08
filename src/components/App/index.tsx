@@ -2,12 +2,15 @@
 import React from 'react';
 import './App.scss';
 // Components
-import { Footer, Content, Header } from 'components/Layout';
+import { BrowserRouter as Router } from 'react-router-dom';
+import { Footer, Content, Header } from 'components/layout';
 
 export const App = () => (
   <>
-    <Header />
-    <Content />
-    <Footer />
+    <Router>
+      <Header />
+      <Content />
+      <Footer />
+    </Router>
   </>
 );
