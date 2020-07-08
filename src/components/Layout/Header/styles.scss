@@ -1,0 +1,14 @@
+@import '../../../theme/vars';
+
+.header {
+  position: sticky;
+  top: 0;
+  left: 0;
+  padding: 20px;
+  background: $section-background;
+  z-index: 2;
+
+  &__title {
+    font-family: 'Roboto Bold', sans-serif;
+  }
+}

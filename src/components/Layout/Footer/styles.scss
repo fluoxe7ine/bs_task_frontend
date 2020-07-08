@@ -1,0 +1,23 @@
+@import "theme/vars";
+
+.footer {
+  background: $section-background;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 3vw;
+  font-family: 'Roboto Thin', sans-serif;
+
+  &__link {
+    text-decoration: none;
+    color: #e3941b;
+    transition: .2s color;
+
+    &:hover {
+      color: #ff9a00;
+    }
+  }
+}
