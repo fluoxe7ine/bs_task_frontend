@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { recipeActions } from 'store/recipe/actions';
 import { IStore } from 'store';
 import { Loader } from 'components/ui/Loader';
-import { IRecipe, IRecipeVersion } from '../types';
+import { IRecipe, IRecipeCard, IRecipeVersion } from '../types';
 
 export const RecipeCards: React.FC = () => {
   const dispatch = useDispatch();
@@ -36,17 +36,25 @@ export const RecipeCards: React.FC = () => {
           latestVersion,
         ] = versions.sort((v1: IRecipeVersion, v2: IRecipeVersion) => (new Date(v1.date) < new Date(v2.date) ? 1 : 0));
 
-        return (
+        return {
+          id,
+          ...latestVersion,
+        };
+      })
+        .reverse()
+        .map((recipe: IRecipeCard) => (
           <RecipeCard
-            key={id}
-            id={id}
-            date={latestVersion.date}
-            description={latestVersion.description}
-            title={latestVersion.title}
-            cover={latestVersion.cover}
+            key={recipe.id}
+            id={recipe.id}
+            date={recipe.date}
+            description={recipe.description}
+            title={recipe.title}
+            cover={recipe.cover}
           />
-        );
-      })}
+        ))}
     </>
   );
 };
+
+// return (
+// );

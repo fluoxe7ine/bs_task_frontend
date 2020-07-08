@@ -6,10 +6,10 @@ import './styles.scss';
 
 export const Header = () => (
   <div className="header">
-    <Link to={book.homePage}>
-      <h1 className="header__title">
+    <h1 className="header__title">
+      <Link to={book.homePage}>
         Cookbook Javascript
-      </h1>
-    </Link>
+      </Link>
+    </h1>
   </div>
 );

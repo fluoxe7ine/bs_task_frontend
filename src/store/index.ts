@@ -1,12 +1,14 @@
 // Core
-import { createStore, applyMiddleware } from "redux";
-import { composeWithDevTools } from "redux-devtools-extension";
+import { createStore, applyMiddleware } from 'redux';
+import { composeWithDevTools } from 'redux-devtools-extension';
 // Middlewares
-import createSagaMiddleware from "redux-saga";
+import createSagaMiddleware from 'redux-saga';
+import { routerMiddleware } from 'connected-react-router';
 // Roots
-import { rootReducer } from "./rootReducer";
-import { rootSaga } from "./rootSaga";
-import { IRecipe } from "../components/recipe/types";
+import { createBrowserHistory } from 'history';
+import { createRootReducer } from './rootReducer';
+import { rootSaga } from './rootSaga';
+import { IRecipe } from '../components/recipe/types';
 
 const sagaMiddleware = createSagaMiddleware();
 
@@ -17,9 +19,11 @@ export interface IStore {
   };
 }
 
+export const history = createBrowserHistory();
+
 export const store = createStore(
-  rootReducer,
-  composeWithDevTools(applyMiddleware(sagaMiddleware))
+  createRootReducer(history),
+  composeWithDevTools(applyMiddleware(routerMiddleware(history), sagaMiddleware)),
 );
 
 sagaMiddleware.run(rootSaga);

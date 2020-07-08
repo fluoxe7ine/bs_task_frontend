@@ -13,9 +13,12 @@
     "@types/react-dom": "^16.9.8",
     "@types/react-redux": "^7.1.9",
     "@types/react-router-dom": "^5.1.5",
+    "connected-react-router": "^6.8.0",
+    "history": "^4.10.1",
     "node-sass": "^4.14.1",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
+    "react-hook-form": "^6.0.2",
     "react-icons": "^3.10.0",
     "react-redux": "^7.2.0",
     "react-router-dom": "^5.2.0",
@@ -44,7 +47,8 @@
     "rules": {
       "import/prefer-default-export": "off",
       "import/no-default-export": 2,
-      "react/prop-types": 0
+      "react/prop-types": 0,
+      "no-underscore-dangle": 0
     }
   },
   "browserslist": {

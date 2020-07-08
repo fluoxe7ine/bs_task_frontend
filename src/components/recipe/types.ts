@@ -18,3 +18,9 @@ export interface IRecipeCard {
   description: string,
   date: Date,
 }
+
+export interface IRecipeFormData {
+  cover?: any,
+  title: string,
+  description: string
+}

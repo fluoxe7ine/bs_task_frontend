@@ -26,7 +26,7 @@ export const RecipeCard: React.FC<IRecipeCard> = ({
       <img className="recipe__cover" src={cover || noCover} alt="Recipe cover" />
       <div className="recipe__content">
         <h2 className="recipe__title">{title}</h2>
-        <article className="recipe__description">{shortDescription}</article>
+        <span className="recipe__description">{shortDescription}</span>
       </div>
       <div className="recipe__date date">
         <FaTable className="date__icon" />

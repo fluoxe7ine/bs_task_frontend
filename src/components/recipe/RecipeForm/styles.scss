@@ -1,0 +1,18 @@
+.field {
+  display: block;
+  font-size: inherit;
+  padding: 10px;
+  margin-bottom: 10px;
+}
+
+.form {
+  width: 100%;
+
+  &__description {
+    resize: none;
+  }
+
+  &__cover {
+    padding: 0;
+  }
+}

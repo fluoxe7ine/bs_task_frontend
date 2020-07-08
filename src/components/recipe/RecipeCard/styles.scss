@@ -6,9 +6,10 @@
   box-shadow: 0 3px 15px rgba(0,0,0,0.2);
   transition: .5s box-shadow;
   position: relative;
+  margin-bottom: 20px;
 
-  &:not(:last-of-type) {
-    margin-bottom: 20px;
+  &:last-of-type {
+    margin-bottom: 80px;
   }
 
 
@@ -67,4 +68,8 @@
   &__icon {
     margin-right: 5px;
   }
+}
+
+a {
+  color: black;
 }
