@@ -1,7 +1,9 @@
 import { takeEvery } from 'redux-saga/effects';
 import { recipeActions } from '../actions';
 
-import { getAllRecipesWorker, createRecipeWorker, getRecipeWorker } from './workers';
+import {
+  getAllRecipesWorker, createRecipeWorker, getRecipeWorker, editRecipeWorker,
+} from './workers';
 
 export const recipeWatchers = [
   function* getAllRecipesWatcher() {
@@ -12,5 +14,8 @@ export const recipeWatchers = [
   },
   function* getRecipeWatcher() {
     yield takeEvery(recipeActions.getRecipeAsync.request, getRecipeWorker);
+  },
+  function* editRecipeWatcher() {
+    yield takeEvery(recipeActions.editRecipeAsync.request, editRecipeWorker);
   },
 ];

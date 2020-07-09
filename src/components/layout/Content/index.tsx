@@ -2,7 +2,9 @@
 import React from 'react';
 import { Switch, Route } from 'react-router-dom';
 import { book } from 'routes';
-import { HomePage, CreateRecipePage, RecipePage } from 'components/pages';
+import {
+  HomePage, CreateRecipePage, RecipePage, EditRecipePage,
+} from 'components/pages';
 import './styles.scss';
 
 export const Content = () => (
@@ -15,7 +17,7 @@ export const Content = () => (
         <RecipePage />
       </Route>
       <Route path={book.editRecipePage} exact>
-        <div>edit recipe</div>
+        <EditRecipePage />
       </Route>
       <Route path={book.createRecipePage} exact>
         <CreateRecipePage />

@@ -45,9 +45,12 @@ export const RecipeCards: React.FC = () => {
       })
         .reverse()
         .map((recipe: IRecipeCard) => (
-          <Link className="card" to={generatePath(book.recipePage, { id: recipe.id })}>
+          <Link
+            key={recipe.id}
+            className="card"
+            to={generatePath(book.recipePage, { id: recipe.id })}
+          >
             <RecipeCard
-              key={recipe.id}
               id={recipe.id}
               date={recipe.date}
               description={recipe.description}

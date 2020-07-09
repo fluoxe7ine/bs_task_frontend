@@ -8,16 +8,35 @@ export const getAllRecipes = async () => {
   return recipes;
 };
 
-export const postRecipe = async ({ cover, title, description }: IRecipeFormData) => {
+const generateForm = (formData: IRecipeFormData) => {
   const form = new FormData();
-  if (cover && cover.length) {
-    form.append('cover', cover[0]);
+  if (formData.cover && formData.cover.length) {
+    form.append('cover', formData.cover[0]);
   }
-  form.append('title', title);
-  form.append('description', description);
+  form.append('title', formData.title);
+  form.append('description', formData.description);
   form.append('date', new Date().toISOString());
 
+  return form;
+};
+
+export const postRecipe = async (formData: IRecipeFormData) => {
+  const form = generateForm(formData);
+
   const response = await fetch(ENDPOINTS.postRecipe, {
+    method: 'POST',
+    body: form,
+  });
+
+  const data = await response.json();
+
+  return data;
+};
+
+export const editRecipe = async (id: string, formData: IRecipeFormData) => {
+  const form = generateForm(formData);
+
+  const response = await fetch(`${ENDPOINTS.editRecipe}/${id}`, {
     method: 'POST',
     body: form,
   });

@@ -13,6 +13,10 @@ export enum RecipeTypes {
   GET_RECIPE = 'GET_RECIPE',
   GET_RECIPE_SUCCESS = 'GET_RECIPE_SUCCESS',
   GET_RECIPE_FAIL = 'GET_RECIPE_FAIL',
+
+  EDIT_RECIPE = 'EDIT_RECIPE',
+  EDIT_RECIPE_SUCCESS = 'EDIT_RECIPE_SUCCESS',
+  EDIT_RECIPE_FAIL = 'EDIT_RECIPE_FAIL',
 }
 
 export const recipeActions = {
@@ -33,4 +37,10 @@ export const recipeActions = {
     RecipeTypes.GET_RECIPE_SUCCESS,
     RecipeTypes.GET_RECIPE_FAIL,
   )<string, IRecipe, undefined>(),
+
+  editRecipeAsync: createAsyncAction(
+    RecipeTypes.EDIT_RECIPE,
+    RecipeTypes.EDIT_RECIPE_SUCCESS,
+    RecipeTypes.EDIT_RECIPE_FAIL,
+  )<{ id: string, data: IRecipeFormData }, IRecipe, undefined>(),
 };
